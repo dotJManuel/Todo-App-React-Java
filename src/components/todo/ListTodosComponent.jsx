@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react"
 import { retrieveAllTodosForUsername, deleteTodoApi } from "./api/TodoApiService"
+import { useAuth } from "./security/AuthContext"
 
 function ListTodosComponent() {
 
-    const [todos, setTodos] = useState([])
+    const authContext = useAuth()
+    const username = authContext.username
 
-    const [message,setMessage] = useState(null)
+    const [todos, setTodos] = useState([])
+    const [message, setMessage] = useState(null)
 
     useEffect ( () => refreshTodos(), [])
 
     function refreshTodos() {
-        retrieveAllTodosForUsername('in28minutes')
+        retrieveAllTodosForUsername(username)
         .then(response => setTodos(response.data))
         .catch(error => console.log(error))
     }
 
     function deleteTodo(id) {
-        deleteTodoApi('in28minutes', id)
+        deleteTodoApi(username, id)
         .then(
             () => {
                 setMessage(`Delete of todo with id = ${id} successful`)
