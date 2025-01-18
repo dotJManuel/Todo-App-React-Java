@@ -1,9 +1,12 @@
 import {useParams, Link} from 'react-router-dom'
 // import {useState} from 'react'
 // import { retrieveHelloWorldPathVariable } from './api/HelloWorldApiService'
+// import { useAuth } from './security/AuthContext'
+// import { retrieveHelloWorldPathVariable } from './api/HelloWorldApiService'
 
 function WelcomeComponent() {
 
+    //const authContext = useAuth()
     const {username } = useParams()
 
     // const [message, setMessage] = useState(null)
@@ -23,6 +26,8 @@ function WelcomeComponent() {
     // function errorResponse(error) {
     //     console.log(error)
     // }
+
+    //retrieveHelloWorldPathVariable('dot', authContext.token)
 
     return (
         <div className="WelcomeComponent">
